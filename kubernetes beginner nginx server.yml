@@ -1,0 +1,66 @@
+#nginx_pod.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+        name: my-nginx-pod
+spec:
+        containers:
+                - name: my-nginx
+                  image: nginx
+
+#nginx_rc.yml
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+        name: my-nginx-rc
+spec:
+        replicas: 10
+        selector:
+                app: nginx
+        template:
+                metadata:
+                        name: my-ngnix-pod
+                        labels:
+                                app: nginx
+                spec:
+                        containers:
+                                - name: nginx
+                                  image: nginx
+
+#nginx_service.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+        name: my-nginx-service
+spec:
+        type: NodePort
+        ports:
+                - port: 80
+        selector:
+                app: newnginx#[(nginx)changed]
+
+#nginx_deployment.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: nginx-deployment
+spec:
+        replicas: 5 
+        selector:
+                matchLabels:
+                        app: newnginx 
+        template:
+                metadata:
+                        labels:
+                                app: newnginx  
+                spec:
+                        containers:
+                                - name: my-nginx
+                                  image: anjucoursera1/nginxcourseraapp#[(nginx)changed]
+                                  ports:
+                                          - containerPort: 80
+

@@ -1,0 +1,126 @@
+Welcome back to our fifth task
+In this task, we will see rolling updates and rollbacks
+in Kubernetes, as I have mentioned earlier, the sole reason
+why deployments came into existence in Kubernetes objects is
+nothing but the ease with which you can perform rolling
+updates and rollbacks.
+But what do you mean by rolling updates?
+Consider situation.
+where all your
+Users wanted to have your application running all the time
+they wanted available all the time.
+Meanwhile, the developers are also asked to update
+the applications, creating various versions
+off the application.
+So rolling updates is the feature, which helps us to update
+all over deployments with zero downtime now roll back is
+nothing but the reverse process where you revert back to
+one of your previous versions.
+Now, to simulate this to simulate our rolling update feature,
+we are going to update the image with which you are running
+your pods, which are managed under your deployment.
+So take your existing deployment, modify it to use a newer
+image. Also modify the service's definition file
+that they have created in other third task to use the pods
+that are coming under our deployment so Let's see our
+definition file of your deployment once again vi 
+nginx_deployment.yml file Now this is 
+the definition file and here
+ We are having 5 replicas of nginx pod running
+and the selector  that we have used is app:newnginx  now update
+your service to use these pods So you go to your service
+definition file so v I nginx_service.yml file
+Now just press enter Now here
+the selector that we have used is nginx It's now
+we are going to modify it and use newnginx as our
+label so escape I to bring the file into the editable format
+and you provide newnginx.
+So all the pods having the label new nginx
+will be taken into consideration for this particular service.
+Now save the file with help Of escape :wq!
+Now apply this onto your Kubernetes Cluster sudo kubectl
+apply minus f nginx_service.yml file 
+nginx_service.yml
+Now just press enter now our service is getting configured
+now sudo kubectl get svc
+svc just press enter so the service NodePort still remains
+the same.
+31243 Now access it in our chromium browser.
+Go to the chromium browser and here update or refresh
+once again.
+Now we are able to see the same page
+Why? Because in our deployment also, we are deploying other
+nginx pods, which is using the same nginx.
+image from Docker Hub
+Huh? But now let's try to update this update your deployment
+with an entirely new image which will give you a different
+landing page.
+Now let's go to your terminal.
+Okay, go to your deployment definition file, nginx
+deployment.yml  file now here under the image name
+it was using nginx image.
+Now here I'm going to give a newer image.
+So bring the file into the editable format with the help
+off escape.
+I instruction Go to the line, where you have image name specified
+Details specified.
+Update the newer
+image Details.
+So this time I'm going to use an image from my Docker Hub.
+ account anjucoursera1 and the image name is
+nginxcourseraapp
+This is
+What is alright?
+my newer image now.
+Just save this file.
+with the help of 
+Esc:wq! instruction.
+Now update your deployment sudo kubectl apply minus f
+nginx_deployment.yml file
+just press enter now
+What are we seeing here?
+Off. A deployment is updated.
+Let's go to your chromium browser.
+Refresh it!
+Rhyme, Rhyme, Rhyme!
+Now we are able to see the new landing page that we are
+getting from our newer image ofnginxcourserapp
+image. Now we have updated your deployment without any down
+times. Now let's do a roll back to your previous version.
+How to do that?
+First list down your revision history, so go to your terminal.
+Okay, Now, just give the command.
+Make sure that you are in the terminal and here, give the
+command sudo kubectl rollout.
+History deploy.
+Give  the name of the deployment nginx-deployment  just press
+enter. Now you have two revisions of your deployment.
+One with nginx  image and the second one with of a new
+nginx image.
+Now let's go back to our previous version off your nginx
+image. So to do that, do a rollback sudo kubectl  rollout
+pseudo kubectl roll out undo deploy undo
+Deploy.
+I give the name of the deploy, which is nothing but n
+nginx-deployment.
+Yeah, okay.
+Yeah, And we are going to revision.
+-- to- revision=1
+equal to one
+Just press enter.
+It will roll back to our previous version.
+Now let's go to your chromium browser
+Then refresh it to your chromium browser.
+Now again, you will be able to see your nginx old
+nginx landing page.
+Okay, so just refresh it.
+Now we have got back our nginx landing page.
+Now, if you're not able to find the difference immediately,
+kindly refresh it once or twice.
+Great job on completing our fifth task.
+With that, we have completed our guided project Hope This
+guided project gave you an insight about the various que
+Kubernetes objects and how it is used for deploying your
+applications.
+Hope you had a good learning experience.
+Thank you so much for attending the session and happy learning.

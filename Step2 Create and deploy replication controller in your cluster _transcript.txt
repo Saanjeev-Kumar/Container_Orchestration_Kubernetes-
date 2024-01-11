@@ -1,0 +1,157 @@
+Welcome back to a second task now that we have seen how
+to deploy our applications as pods.
+Now let's concentrate on and higher level object in Kubernetes
+As a matter of fact, we don't directly work on pods.
+We have higher level objects that makes our life easier.
+We're going to work on a replication controller.
+But what is replication controller?
+Why we need replication controller.
+Controller replication controller, Help us to maintain
+the state of your pods.
+What do you mean by the state?
+Of your pods?
+If you want a certain number of instances of your pods
+running and , you want to make sure that these many number
+of instances run in your Kubernetes cluster all the time.
+We have to create a controller on our pods.
+And that is exactly what replication controller is all about.
+It will maintain the number of instances of your pods
+running all the time.
+Let's create a definition file for your replication
+controller before that.
+Just clear your terminal.
+We use the command.
+Clear now, create the definition file.
+We used the V I editor nginx underscore RC is the name
+off the definition file that we're going to use now
+just press enter  And now here bring the file into the editable
+format with help off escape I instruction Now what is
+the first thing that you have to provide?
+You have to provide the API version now API version
+for our replication controller is same as that of
+our pods i.e v1 now the kind of object that you want
+to deploy onto the Kubernetes cluster.
+This time we are going to deploy a replication controller now
+provide the metadata details.
+What are the metadata details that you want
+You want tohave a name of our replication Controller,
+I am going to give the name of my replication controller
+as my-nginx-rc Oh, what is the next thing
+that you want?
+You want to provide the specification off your replication
+controller, so make sure that this particular specification
+key comes under the same spacing of your metadata field.
+Now under the specification provided details about your
+replicas, what you mean by the replicas?
+It is a number of instances of your pod running.
+I want 10 instances of my pod running now.
+The next thing that you have to provide is the selector
+on what is the selector.
+Selector is the variable, or it's a label with which we
+can identify the pods which are managed by this replication
+controller.
+This comes handy or this feature comes very much handy when
+you have lot of pods running in your Kubernetes.
+ cluster managed under a different replication .
+Controllers
+So selector is the glue with which the pods are linked
+to your replication controller.
+Now I'm going to specify my selector as app : nginx .
+there should be a spacing after the colon
+Now, what is the next thing that you have to provide?
+Next thing that you have to provide for your replication 
+controller is the pod template.
+details
+Now where is that pod template?
+Details.
+Make sure that this template has the same spacing of your
+selector.
+So bring that under the same spacing off your selector.
+And these are the details that you have for your pod.
+Now provide the metadata details that you want meta data.
+Now, under the metadata details.
+What do you want to provide?
+I want to provide the name of my pod.
+I'm going to name it as my-nginx-pod
+What is the next thing that I want?
+I want to provide the labels for my pod with which my
+replication controller will identify the pods, which needs
+to be the same thing that we have provided under the selector.
+So this is the label of your pod with replication
+controller identifies them now provide the specifications.
+Now make sure that this specification falls under the metadata
+ field because these are the attributes of.
+All these are the factors, or these are the properties
+of your pods.
+So all these things comes under the same spacing
+under that off your metadata field.
+Now under the specification, provide the details
+about the containers.
+Now, what are the details that you want to provide?
+The first one being the name off the container of the name
+of the container that I am going to give nginx
+It's now provide the image name that we're going to use.
+I'm going to use nginx image from my Docker Hub.
+With that we have completed the definition file, save the file
+that escape.
+:wq!
+Exclamation instruction.
+Now apply this on to your Kubernetes
+cluster sudo kubectl apply 
+Apply minus F nginx_rc.yml.
+Give the name of the file nginx_rc .yml
+Just press enter.
+our replication controller is created.
+Now get the list off your replication controllers.
+sudo kubectl get rc you will get the list off
+replication controllers, right?
+We have one replication controller that is running.
+Now get the pod details sudo kubectl get pods
+give the label What is the label?
+app=
+nginx
+now just press enter.
+You have 10 instances of your pod running.
+Wait for some time to make the pods into the running status.
+Now get the list off pods once again, just use the same
+commands you look.
+sudo kubectl get pods -l app=nginx
+just press
+Enter Now you will get the list of pods which have all the
+pods up and running status.
+Now let's see what happens when we delete these pods in a
+replication controller.
+To simulate that just simulate a situation where you can
+end up losing your pods on replication.
+Take controller takes care of that for you to simulate that
+we are going to delete our pods in our replication
+controller.
+We do that with the help of sudo kubectl delete pods -l app=nginx
+with the label app=nginx
+just press enter
+See this?
+It's deleting our pods one after the other?
+Now, let's get the list of pods.
+Once again, we type in the command sudo kubectl get pods
+pods with the label app equal to nginx.
+It's now, what are we seeing here?
+We have another set off newer pods running under our
+replication controller.
+This is what exactly called as the self healing feature in
+Kubernetes
+We are able to achieve this with the help of our replication
+controller.
+Now let's get the list of your replication controller.
+sudo kubectl get rc. just  press enter right.
+Well, list down the replication controllers in your system
+and still you are having 10 instances of your pod running.
+So whatever happens to your pods, which is managed under
+your replication controller, it will always make sure that
+you have the right number of replicas running in your Kubernetes
+next cluster.
+Always.
+This is exactly why replication controller is used for great
+job on completing your second task on replication controllers.
+In the next task We will understand how to access of
+application running inside our pods from outside world.
+See you all in the next task.

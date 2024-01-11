@@ -1,0 +1,148 @@
+Welcome to this guided project about container orchestration
+using Kubernetes
+my name is, Anju M Dominic
+M. Dominic and I will be your instructor for this project.
+This project is for people who are interested in container
+orchestration.
+I will teach you how to effectively deploy your application
+in a Kubernetes
+ Cluster.
+You don't need to be an expert developer to take this project,
+but you should be familiar with basic linux and 
+Docker fundamentals.
+To get most out of this project, I'm excited to teach you
+how to do container orchestration.
+I have worked as a DevOps practitioner and trainer
+for several companies within the tech industry, and I am
+a founder of a training and consulting company, QuadraLogics
+logics.
+I'm also an author of  several white papers and two books
+in Docker.
+Let's take a look at what you will accomplish By the end
+of this project.
+We will see that Kubernetes
+It is all about managing containers at a scale, making it
+a container orchestrator throughout each task.
+In this project, I will show you how to deploy your
+application onto the Kubernetes cluster.
+Using pods, replica sets, deployments and  services
+let's dive right in on the screen, you will be able to find
+two desktops
+One on your right will be my 
+Desktop, and one on your left would be your cloud.
+Desktop
+You can interactively do
+Do all the actions that I do in your cloud Desktop
+Please feel free to pause the video at any time to try out
+yourself.
+Then resume watching the video when you're done.
+In today's world, where we focus on micro service's
+architecture, er we often encounter billions of containers
+in a day.
+Then we need a portable, stable and extensible platform
+for managing containers.
+And this is what Kubernetes is all about.
+This gives justice to the meaning of the word Kubernetes
+meaning.
+Helmsman or pilot.
+Since we have a large number of containers, we need
+to associate Kubernetes with multiple machines.
+A Kubernetes cluster is a set of node machines for running
+your containerized applications.
+So now in our first task, let's deploy a nginx
+It's Web server or, in other words, a reverse proxy server
+onto a Kubernetes cluster.
+We're now going to use a minikube cluster which provides us
+with a single node cluster in your system.
+We have this already installed in your cloud.
+Desktop.  in Kubernetes World, the basic atomic unit that we
+will be dealing with is a pod
+We define our applications in a pod and applied
+on to the Kubernetes
+cluster. A pod can have a single container or multiple
+containers, but why they need pods?
+Why can't we deploy our application in the form of containers
+onto the Kubernetes
+cluster.
+This is because containers are decided or were invented just
+for running single processes.
+If you're going to run many unrelated processes in a single
+container, it will be extremely difficult for you to keep all
+those processes running, manage their logs, etc.
+So we want a higher level construct that will allow you
+to bind containers together and manage them as a single unit
+and  this is what exactly pods is all about.
+In a pod, you can have a single container or multiple
+containers.
+In ideal cases, you will have a single container pod,
+but there are situations where we can have a single container
+and a lot off supporting containers.
+Now let's create a definition file for our.
+Pods. This is just yet yml
+File.
+So let's go to over terminal.
+Let's open our terminal maximize The terminal now created
+the folder where you're going to put down all your definition
+files. I'm going to create a folder called as yml.
+I used mkdir command. cd into the yml folder .
+Now create a file where I'm going to have all the definitions,
+all the details about my pods.
+So I'm going to name my file as nginx
+pod.yml
+I'm going to deploy a nginx application in my Pod
+and applied onto the Kubernetes cluster
+Now, just make the file in the Editable format.
+Now the first thing that we have to specify
+for the definition file is the API schema version.
+Pods comes under API version schema, v1 now specify
+the kind of object that you're going to create
+with this definition file.
+We're going to create a pod, give the metadata fields. what
+do you mean by metadata fields. it could be anything like a name
+of the pod.
+I'm going to define my name of the pod as my-nginx-pod
+now, give the specification for your pod.
+So since it is a yml file, always make sure
+that you are having the correct spacing.
+The API version, kind, metadata and the specifications should be
+under same spacing. Now, under specification, you give
+the containers details.
+You have multiple containers.
+We specify everything down below.
+Right now we have only one container.
+So give a name for the container.
+I'm going to name it us.
+mynginx
+Now  specify the image that you want to use to create
+the container.
+I'm going to use the nginx image directly from the Docker
+Hub. But this is a simple definition file for our pod.
+Save the file with escape.
+:wq!
+Now we need to apply this to the Kubernetes cluster.
+So as the first step, start your minikube cluster.
+You do that with help of sudo minikube start
+vm driver None.
+--vm-driver=none
+This specify that we're going to use Docker for starting our
+minikube rather than VM's.
+It will take a couple of minutes to start your minikube
+cluster Now our minikube cluster has started.
+Now apply your definition of your pods onto your Kubernetes.
+It's cluster.
+You do that with the help of sudo kubectl apply -f 
+ apply command, so this apply command.
+Will create all your objects that you have defined on your
+definition file onto the Kubernetes cluster?
+Now give the name of the file that you want to apply.
+So it's nothing but nginx pod . yml. Just press enter 
+ Now we could see that our nginx pod is created.
+Now get the list of pods sudo kubectl get pods
+You will be able to see that we have a single instance of
+your nginx pod up and running.
+Great job on completing your first task in the first task,
+we learned how to apply a pod onto your Kubernetes Cluster.
+We understood how What is the relationship between a
+container and a pod
+In the next task, we will see another high level object
+called as  Replication Controller See you all in the next task.

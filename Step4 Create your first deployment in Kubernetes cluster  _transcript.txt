@@ -1,0 +1,112 @@
+Welcome back to the fourth task.
+In this fourth task, we will learn how to deploy pods
+in the form off deployments onto the Kubernetes cluster.
+So before going in in detail with the deployments, there is
+one more object you need to understand.
+It is called as replication set in Kubernetes world.
+In the second task, we learned what is replication controller
+like? Just like that, you have another object in your Kubernetes
+It's called as replication set replication.
+Controllers and replication sets functionality wise
+They are similar, but replication set is a newer object.
+It has an additional feature where we can have set based
+selectors.
+That means a set based selector would mean that you would be
+ableto allow filtering off your keys according to a set
+off values.
+Unlike in the case of Equality based, selectors where all
+specifications or all the labels need to be satisfied
+in the equality based to select this.
+But now, in the set based selector, you can have a set
+of values and you  need to satisfy only a few of them.
+Deployments make use off replication set.
+So now for this task.
+So let's take our nginx application
+We deploy our pods in the form of deployments.
+Now let's create a definition file for your deployments.
+So let's go to our terminal.
+Let's type in the command clear to clear your terminal.
+Now we're going to create a definition file for a deployment.
+So But before that, let me just ask you a question.
+Why we need deployments.
+We have replication controllers.
+You have replication sets.
+But why we need deployments an another higher level object.
+Deployments help us to perform rolling updates and rollbacks
+in a very easy manner compared to other high level objects
+like replication, controller or replication sets.
+What you mean by rolling updates and rollbacks, rolling
+updates is nothing.
+But where you modify or you update something on your pod
+Instances and roll back.
+It's just going back or reverting back to the previous
+versions.
+we will come  in detail with that in our next task.
+Now, let's go on creating our definition file for our
+deployment.
+So we do that with by creating a file vi nginx_deployment.yml
+deployment.
+.yml
+Now bring the file in.
+the editable format with escape I command provide the API
+version now API version that we're going to use this time.
+apps/v1
+Now give the kind of object that you want to create
+on the Kubernetes cluster.
+We are going to create deployment now, provide the metadata
+fields
+give the name
+I'm going to name it as nginx-deployment
+Now  Give the specifications.
+Make sure that the spec comes under the same spacing
+like  that of metadata now under specifications.
+Provide the replicas.
+I want five instances of my pods running now.
+Provide the selector.
+Make sure that it's under the same spacing selector.
+Okay? now
+Match labels.
+Now, what is the match label that you want again?
+I'm going to give a label as new nginx
+Yeah, Now, provide the template details.
+It is the pod template that we are going to specify here.
+ what comes under the template details, make sure
+that this template is in the right spacing with that of the
+selector.
+Now in the templates what are the other things that you want to
+give you want to provide the metadata details
+Now, what is the name or what are the labels that you are
+going to specify for your pods.
+Yeah, I'm going to specify my labels.
+as app:newnginx
+Now.Now give the specifications other specifications.
+of your container now.
+Now give  the specifications.
+of your container
+Now give the name
+Give the name of the containers.
+I'm going to name it us mynginx
+And now I'm going to provide the image that I'm going to use.
+I'm going to use The nginx image directly from Docker
+Hub now again.
+Also specify the ports, Container Port that we're going to have
+for our application is port number 80.
+Now, save this.
+File. So now we have our definition file.
+Ready? Now save the file with help.
+Of escape.
+:wq exclamation command.
+Now apply this deployment definition file onto your Kubernetes
+cluster sudo kubectl apply -f
+Apply give the name of the file as nginx_deployment
+.yml file
+Just press enter now your deployment is being applied now.
+sudo kubectl get deployment get the apply men which
+will get you the list of the deployment we have.
+nginx deployment that is applied onto your Kubernetes
+cluster We have five instances of your pods running great
+job on completing your fourth task in the task.
+We learned how to deploy a deployment onto the Kubernetes
+cluster.
+In the next task, we will see how to do a rolling update and 
+Rollback See you all in the next task.

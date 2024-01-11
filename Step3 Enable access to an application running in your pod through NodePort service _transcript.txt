@@ -1,0 +1,115 @@
+Welcome back to the third task.
+In the previous task, we learned how to deploy a pod
+through a replication controller.
+We could only verify whether our application is running
+by Kubectl displaying the number of pods running.
+But that's not enough.
+It would be great if we could access the application running
+in the pod from outside, say, through a browser in Kubernetes
+ We do that with the help Of services for every pods
+in the Kubernetes cluster.
+It is assigned an I p address.
+So cant we access our application running inside the pods
+from outside.
+Why do we need services to do that?
+That is because the pods in the Kubernetes cluster is not
+a stable thing.
+It comes and, goes they are not stable and reliable.
+We saw that in our replication controller task, where
+suddenly newer ports with new I P addresses came
+into existence.
+That is why we wanted a reliable endpoint which is not going
+to change according to the pods and This sits in between your
+pods and your external world.
+This is called as services there are various types
+of services available.
+We are going to see NodePort service in which a particular
+port is allocated for your application, you can access
+the application through that port.
+Usually ah port range from 30,000 to 32,767.
+67 is used for this purpose, but you can specify it  otherwise
+by using another flags called as  service NodePort range  flag.
+Now let's create a definition file for our nginx  service
+or the service, which is going to access your nginx
+application.
+So first, let me just clear the terminal for you.
+We type in the command clear now, create a file vi 
+nginx_service.yml
+Bring the file into the editableformat with Escape
+I command and after that, give the A P I version every I
+version which is nothing but our  version v1
+Please make sure that you give a space here now provide
+the kind of object that you want To applied
+onto the Kubernetes cluster.
+We're going to, create a service now provide the 
+metadata details
+The first thing that you have to provide is the name.
+I am going to name it as my-nginx-service, so this now provide
+the specifications for your service.
+We do that with help off spec key to make sure that you have
+the correct spacing.
+Spec should go under metadata.
+And after that, what are the things that you have to provide?
+You have to provide the type of service.
+So the type of service that I'm going to use is NodePort
+service now provide the ports that I'm going to use.
+Make sure that the ports are under the same spacing
+under the type and then now here under the ports, provide
+the details about your port where your application is going to
+run So our nginx application is running in Port 80 now.
+Now. One more thing that you have to provide here.
+The service also needs to understand which are the pods  that
+it is going to manage right, or it also has to understand
+which application it has to divert the traffic.
+So you provide me selector here so that it select or it hits
+only those pods that are having this particular selector
+as their label.
+What is the selector that we have used under your nginx
+controller?
+Task app:nginx We will provide the same thing here.
+Also app:nginx now save the file 
+We do that with the help off escape.
+:wq! and just press enter
+Now apply this to the Kubernetes  cluster sudo kubectl apply
+-f nginx_service.yml
+kubectl apply -f nginx_service.yml
+just press enter and now
+Your service is created.
+Now get the list of services with help of sudo kubectl get svc
+kubectl get svc svc is the short form of service
+So we have two services kubernetes Service, which is the
+default service that will be running after the mini cube
+starting the Mini Cube cluster.
+Now, my-nginx-service is a service that we have created
+So the type of the service is NodePort.
+Put each of the service is assigned an I p address and now
+the ports through which you can access your application is
+31243 right Port 80 is mapped to  31243 So first get the I P
+address of your cloud desktop 
+Ifconfig will give you that, I'll get the I P address, it
+will be somewhere towards the top.
+So you have the i p address.
+Uh, say you have the i P.
+Address here.
+Right. This is the I P address.
+Copy the I P address.
+Minimize the terminal.
+Go to the chromium browser.
+Open the chromium browser and paste it.
+Here. Now give :
+Now, what is the port NodePort address Goto your  terminal.
+Your nodePort address is 31243 Right.
+This is what it is.
+Mapped to both number 80.
+So 31243 provide in the chromium.
+browser 31243 and just press enter
+What is that you're seeing we are  able to access our nginx
+application through the NodePort address on your chromium
+browser.
+Great job on completing your third task.
+In this task, we learned how to create a service and access
+your application running in your pod from
+outside in the next task
+We will see how to deploy your pods in the form of
+deployments see you all in the next task
+Task.
